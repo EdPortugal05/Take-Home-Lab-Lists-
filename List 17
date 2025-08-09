@@ -1,0 +1,51 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+
+
+        List<string> sentences = new List<string>();
+        List<string> words = new List<string>();
+
+        Console.WriteLine("Enter 5 sentences:");
+        for (int i = 0; i < 5; i++)
+        {
+            sentences.Add(Console.ReadLine());
+        }
+
+        foreach (string sentence in sentences)
+        {
+            string[] sentenceWords = sentence.Split(new[] { ' ', '.', ',', '!', '?' },
+                                                  StringSplitOptions.RemoveEmptyEntries);
+            foreach (string word in sentenceWords)
+            {
+                string lowerWord = word.ToLower();
+                if (!words.Contains(lowerWord))
+                {
+                    words.Add(lowerWord);
+                }
+            }
+        }
+
+        words.Sort();
+
+        Console.WriteLine($"\nTotal unique words: {words.Count}");
+        Console.WriteLine("Unique words in alphabetical order:");
+        foreach (string word in words)
+        {
+            Console.WriteLine(word);
+        }
+    }
+}
