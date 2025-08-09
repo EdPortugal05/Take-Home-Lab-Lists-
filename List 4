@@ -13,60 +13,50 @@ namespace HelloWold;
 public static class Program
 {
     public static void Main()
-
     {
 
-        List<int> birthYears = new List<int>();
         int currentYear = DateTime.Now.Year;
-        int minYear = currentYear - 100;
+        List<string> results = new List<string>();
 
-        Console.WriteLine("Enter 5 valid birth years (between {0} and {1}):", minYear, currentYear);
+        Console.WriteLine("Enter 5 birth years (e.g., 1990):");
 
-        while (birthYears.Count < 5)
+        for (int i = 0; i < 5; i++)
         {
-            Console.Write("Enter birth year #{0}: ", birthYears.Count + 1);
+            Console.Write($"Birth year {i + 1}: ");
             string input = Console.ReadLine();
 
-            if (int.TryParse(input, out int year))
+           
+            if (!int.TryParse(input, out int birthYear))
             {
-                if (year >= minYear && year <= currentYear)
-                {
-                    birthYears.Add(year);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid year. Must be between {0} and {1}.", minYear, currentYear);
-                }
+                Console.WriteLine("Error: Please enter numbers only.");
+                i--; 
+                continue;
             }
-            else
+
+            if (birthYear < 1900 || birthYear > currentYear)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"Error: Year must be between 1900 and {currentYear}.");
+                i--; 
+                continue;
             }
+
+            int age = currentYear - birthYear;
+
+            string category = age switch
+            {
+                < 0 => "Invalid (Future Birth)",
+                < 18 => "Minor",
+                < 60 => "Adult",
+                _ => "Senior"
+            };
+
+            results.Add($"Born in {birthYear} → Age {age}: {category}");
         }
 
-        Console.WriteLine("\nAge Report:");
-        Console.WriteLine("-----------");
-        Console.WriteLine("{0,-10} {1,-10} {2,-10}", "Birth Year", "Age", "Category");
-
-        foreach (int year in birthYears)
+        Console.WriteLine("\nResults:");
+        foreach (string result in results)
         {
-            int age = currentYear - year;
-            string category;
-
-            if (age < 18)
-            {
-                category = "Minor";
-            }
-            else if (age >= 18 && age < 65)
-            {
-                category = "Adult";
-            }
-            else
-            {
-                category = "Senior";
-            }
-
-            Console.WriteLine("{0,-10} {1,-10} {2,-10}", year, age, category);
+            Console.WriteLine(result);
         }
     }
 }
