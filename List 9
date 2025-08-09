@@ -1,0 +1,44 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+
+        
+        List<string> names = new List<string>();
+        Console.WriteLine("Enter 6 full names:");
+        
+        for (int i = 0; i < 6; i++)
+        {
+            string name = Console.ReadLine();
+            string formatted = "";
+            
+            foreach (string part in name.Split(' '))
+            {
+                if (part.Length > 0)
+                {
+                    formatted += char.ToUpper(part[0]) + part.Substring(1).ToLower() + " ";
+                }
+            }
+            
+            names.Add(formatted.Trim());
+        }
+        
+        Console.WriteLine("\nFormatted names:");
+        foreach (string name in names)
+        {
+            Console.WriteLine(name);
+        }
+    }
+}
