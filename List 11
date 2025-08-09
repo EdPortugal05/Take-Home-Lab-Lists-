@@ -1,0 +1,64 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+
+    {
+
+        List<string> names = new List<string>();
+        List<float> salaries = new List<float>();
+
+        Console.WriteLine("Enter employee names and salaries (type 'done' to finish):");
+        while (true)
+        {
+            Console.Write("Name: ");
+            string name = Console.ReadLine();
+            if (name.ToLower() == "done") break;
+
+            Console.Write("Salary: ");
+            float salary = float.Parse(Console.ReadLine());
+
+            names.Add(name);
+            salaries.Add(salary);
+        }
+
+        // Apply raises
+        List<float> adjustedSalaries = new List<float>();
+        for (int i = 0; i < salaries.Count; i++)
+        {
+            float salary = salaries[i];
+            if (salary < 15000)
+                salary *= 1.05f;
+            else if (salary >= 15000 && salary <= 30000)
+                salary *= 1.03f;
+
+            adjustedSalaries.Add(salary);
+        }
+
+        Console.WriteLine("\nAdjusted salaries:");
+        for (int i = 0; i < names.Count; i++)
+        {
+            Console.WriteLine($"{names[i]}: {adjustedSalaries[i]:C}");
+        }
+
+        Console.WriteLine("\nEmployees earning above 25,000 after adjustment:");
+        for (int i = 0; i < names.Count; i++)
+        {
+            if (adjustedSalaries[i] > 25000)
+            {
+                Console.WriteLine(names[i]);
+            }
+        }
+    }
+}
