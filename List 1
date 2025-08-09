@@ -1,0 +1,37 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace HelloWold;
+
+public static class Program
+{
+    public static void Main()
+    {
+
+        List<string> students = new List<string>();
+        string name;
+
+        Console.WriteLine("Enter student names (type 'done' to finish):");
+        while (true)
+        {
+            name = Console.ReadLine();
+            if (name.ToLower() == "done") break;
+            students.Add(name.ToUpper());
+        }
+
+        Console.WriteLine("\nPresent Students:");
+        foreach (string student in students)
+        {
+            Console.WriteLine(student);
+        }
+
+        int aCount = 0;
+        foreach (string student in students)
+        {
+            if (student.StartsWith("A")) aCount++;
+        }
+
+        Console.WriteLine($"\nNumber of names starting with 'A': {aCount}");
+    }
+}
