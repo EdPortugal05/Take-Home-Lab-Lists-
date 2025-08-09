@@ -1,0 +1,72 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+
+    {
+
+        List<int> birthYears = new List<int>();
+        int currentYear = DateTime.Now.Year;
+        int minYear = currentYear - 100;
+
+        Console.WriteLine("Enter 5 valid birth years (between {0} and {1}):", minYear, currentYear);
+
+        while (birthYears.Count < 5)
+        {
+            Console.Write("Enter birth year #{0}: ", birthYears.Count + 1);
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out int year))
+            {
+                if (year >= minYear && year <= currentYear)
+                {
+                    birthYears.Add(year);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid year. Must be between {0} and {1}.", minYear, currentYear);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+        }
+
+        Console.WriteLine("\nAge Report:");
+        Console.WriteLine("-----------");
+        Console.WriteLine("{0,-10} {1,-10} {2,-10}", "Birth Year", "Age", "Category");
+
+        foreach (int year in birthYears)
+        {
+            int age = currentYear - year;
+            string category;
+
+            if (age < 18)
+            {
+                category = "Minor";
+            }
+            else if (age >= 18 && age < 65)
+            {
+                category = "Adult";
+            }
+            else
+            {
+                category = "Senior";
+            }
+
+            Console.WriteLine("{0,-10} {1,-10} {2,-10}", year, age, category);
+        }
+    }
+}
