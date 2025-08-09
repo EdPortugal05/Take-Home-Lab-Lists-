@@ -1,0 +1,39 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+
+    {
+
+        List<int> numbers = new List<int>();
+
+        Console.WriteLine("Enter 10 numbers:");
+        for (int i = 0; i < 10; i++)
+        {
+            numbers.Add(Convert.ToInt32(Console.ReadLine()));
+        }
+
+        List<int> filteredNumbers = numbers.Where(n => n > 50).ToList();
+
+        Console.WriteLine($"original count: {numbers.Count}");
+
+        Console.WriteLine($"Filtered count (numbers > 50): {filteredNumbers.Count}");
+
+        Console.WriteLine("fltered numbers:");
+        foreach (int num in filteredNumbers)
+        {
+            Console.WriteLine(num);
+        }
+    }
+}
