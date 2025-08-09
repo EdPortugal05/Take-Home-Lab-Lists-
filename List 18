@@ -1,0 +1,40 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+
+        List<string> words = new List<string>();
+        Console.WriteLine("Enter words (type 'done' to finish):");
+        
+        while (true)
+        {
+            string word = Console.ReadLine();
+            if (word.ToLower() == "done") break;
+            
+            string modified = word.Replace('a', '*')
+                                 .Replace('e', '*')
+                                 .Replace('i', '*')
+                                 .Replace('o', '*')
+                                 .Replace('u', '*')
+                                 .Replace('A', '*')
+                                 .Replace('E', '*')
+                                 .Replace('I', '*')
+                                 .Replace('O', '*')
+                                 .Replace('U', '*');
+            
+            Console.WriteLine($"{word} -> {modified}");
+        }
+    }
+}
