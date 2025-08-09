@@ -1,15 +1,20 @@
 using System;
-using System.Linq; 
+
+using System.Linq;
+
 using System.Collections.Generic;
- 
- 
+
+
+
 namespace HelloWold;
- 
- 
+
+
+
 public static class Program
 {
     public static void Main()
     {
+
         List<string> products = new List<string>();
         List<int> stocks = new List<int>();
 
