@@ -1,0 +1,49 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+
+    {
+        List<int> grades = new List<int>();
+        int aCount = 0, bCount = 0, cCount = 0, dCount = 0, fCount = 0;
+
+        Console.WriteLine("Enter 7 grades (0-100):");
+        while (grades.Count < 7)
+        {
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int grade) && grade >= 0 && grade <= 100)
+            {
+                grades.Add(grade);
+
+                if (grade >= 90) aCount++;
+                else if (grade >= 80) bCount++;
+                else if (grade >= 70) cCount++;
+                else if (grade >= 60) dCount++;
+                else fCount++;
+            }
+            else
+            {
+                Console.WriteLine("Invalid! Enter 0-100");
+            }
+        }
+
+        Console.WriteLine("\nGrade Counts:");
+        Console.WriteLine($"A: {aCount}");
+        Console.WriteLine($"B: {bCount}");
+        Console.WriteLine($"C: {cCount}");
+        Console.WriteLine($"D: {dCount}");
+        Console.WriteLine($"F: {fCount}");
+    }
+}
+
