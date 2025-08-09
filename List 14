@@ -1,0 +1,41 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+
+
+        List<string> countries = new List<string> { "Philippines", "Japan", "USA", "France", "Brazil" };
+        List<string> capitals = new List<string> { "Manila", "Tokyo", "Washington D.C.", "Paris", "Brasilia" };
+
+        Console.Write("Enter a country name: ");
+        string input = Console.ReadLine().ToLower();
+
+        bool found = false;
+        for (int i = 0; i < countries.Count; i++)
+        {
+            if (countries[i].ToLower() == input)
+            {
+                Console.WriteLine($"The capital of {countries[i]} is {capitals[i]}");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            Console.WriteLine("Country not found.");
+        }
+    }
+}
