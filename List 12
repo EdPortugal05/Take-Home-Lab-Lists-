@@ -1,1 +1,45 @@
+using System;
 
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+        List<string> products = new List<string>();
+        List<int> stocks = new List<int>();
+
+        Console.WriteLine("Enter 10 product names and their stock counts:");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write($"Product {i + 1} name: ");
+            products.Add(Console.ReadLine());
+
+            Console.Write($"Stock count: ");
+            stocks.Add(Convert.ToInt32(Console.ReadLine()));
+        }
+
+        Console.WriteLine("\nRestocking report:");
+        for (int i = 0; i < products.Count; i++)
+        {
+            if (stocks[i] < 10)
+            {
+                Console.Write($"{products[i]}: {stocks[i]} -> ");
+                stocks[i] += 20;
+                Console.WriteLine($"{stocks[i]} (RESTOCKED)");
+            }
+            else
+            {
+                Console.WriteLine($"{products[i]}: {stocks[i]} (no restock needed)");
+            }
+        }
+    }
+}
