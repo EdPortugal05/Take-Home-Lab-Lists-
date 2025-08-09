@@ -1,0 +1,48 @@
+using System;
+
+using System.Linq;
+
+using System.Collections.Generic;
+
+
+
+namespace HelloWold;
+
+
+
+public static class Program
+{
+    public static void Main()
+    {
+
+        List<string> courses = new List<string>();
+
+        Console.WriteLine("Register up to 6 courses (5-character codes):");
+        while (courses.Count < 6)
+        {
+            Console.Write($"Enter course {courses.Count + 1}: ");
+            string code = Console.ReadLine();
+
+            if (code.Length != 5)
+            {
+                Console.WriteLine("Course code must be exactly 5 characters.");
+                continue;
+            }
+
+            if (courses.Contains(code))
+            {
+                Console.WriteLine("course code already exists.");
+                continue;
+            }
+
+            courses.Add(code);
+            Console.WriteLine("Course added.");
+        }
+
+        Console.WriteLine("\nRegistered courses:");
+        foreach (string course in courses)
+        {
+            Console.WriteLine(course);
+        }
+    }
+}
